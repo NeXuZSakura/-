@@ -30,7 +30,7 @@ private:
 template<class T>
 StackArray<T>::StackArray(size_t size)
 {
-	size_ = size + 1;
+	size_ = size;
 	top_ = 0;
 	if (size_ < 1)
 	{
@@ -38,8 +38,8 @@ StackArray<T>::StackArray(size_t size)
 	}
 	try
 	{
-		array_ = new T[size_];
-		for (int i = 0; i < size_; ++i)
+		array_ = new T[size_ + 1];
+		for (int i = 0; i < size_ + 1; ++i)
 		{
 			array_[i] = NULL;
 		}
@@ -97,7 +97,8 @@ void StackArray<T>::replace(StackArray<T>& tmp)
 template<class T>
 void StackArray<T>::print()
 {
-	for (int i = 1; i < size_; ++i)
+	std::cout << "Stack: " << std::endl;
+	for (int i = 1; i < size_ + 1; ++i)
 	{
 		std::cout << array_[i] << std::endl;
 	}

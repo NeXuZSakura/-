@@ -40,6 +40,10 @@ QueueArray<T>::QueueArray(size_t size)
 	try
 	{
 		array_ = new T[size_ + 1];
+		for (int i = 0; i < size_ + 1; ++i)
+		{
+			array_[i] = NULL;
+		}
 	}
 	catch (...)
 	{
@@ -77,7 +81,7 @@ T QueueArray<T>::deQueue()
 	{
 		throw QueueUnderflow<T>("queue is empty!");
 	}
-	array_[head_] = NULL;;
+	array_[head_] = NULL;
 	for (int i = 0; i < size_; ++i)
 	{
 		array_[i] = array_[i + 1];
@@ -106,6 +110,7 @@ void QueueArray<T>::replace(QueueArray<T>& tmp)
 template<typename T>
 void QueueArray<T>::print()
 {
+	std::cout << "Queue: " << std::endl;
 	for (int i = 0; i < size_; ++i)
 	{
 		std::cout << array_[i] << std::endl;
